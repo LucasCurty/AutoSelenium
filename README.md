@@ -1,2 +1,2 @@
 # Codigo em produção
-> Criando código. . . 🛠️
+> Criando uma automação de conferencia de canhotos.
