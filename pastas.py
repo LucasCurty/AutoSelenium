@@ -1,7 +1,7 @@
 import os
 from acessos import CAMINHO
 
-folder = os.listdir(CAMINHO)
+folder = os.listdir(f'{CAMINHO}/CANHOTOS')
 folder_canhotos = []
 for i in folder:
     canhoto = i.split('.')
