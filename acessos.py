@@ -1,0 +1,5 @@
+LOGIN = '10778-PR'
+SENHA = '102030'
+URL = 'https://danone.multicte.com.br/Login'
+CAMINHO = 'G:/Meu Drive/'
+CAMINHO_ENV = 'G:\Meu Drive\CANHOTOS'

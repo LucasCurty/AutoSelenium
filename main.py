@@ -1,6 +1,6 @@
 from controles import *
 from selenium import webdriver
-from acessos import LOGIN,SENHA,URL,CAMINHO, ANT_CAMINHO
+from acessos import LOGIN,SENHA,URL,CAMINHO, CAMINHO_ENV
 from pastas import folder_canhotos,folder
 import time
 import pyautogui
@@ -22,15 +22,16 @@ time.sleep(2)
 driver.find_element('xpath','/html/body/div[2]/div/div/main/section/div[2]/div[1]/div/div/div/div/div[1]/div[1]/div[4]/div/div/input').clear()
 time.sleep(1.7)
 
-def se_pendente(valor):
+def se_pendente(valor,tipo):
     driver.find_element('xpath','/html/body/div[2]/div/div/main/section/div[2]/div[2]/div/div/div[2]/div[1]/div[1]/div[2]/div/div[2]/div/div/table/tbody/tr/td[13]/div/button').click()
     driver.find_element('xpath','/html/body/div[2]/div/div/main/section/div[2]/div[2]/div/div/div[2]/div[1]/div[1]/div[2]/div/div[2]/div/div/table/tbody/tr/td[13]/div/div/a[4]').click()
     time.sleep(3)
-    pyautogui.typewrite(f'{ANT_CAMINHO}\{valor}')
+    pyautogui.typewrite(f'{CAMINHO_ENV}\{valor}{tipo}')
     pyautogui.press('enter')
     time.sleep(1)
     pyautogui.press('enter')
     print(f"------------{valor}-- ENVIADO PARA A DANONE ---------------------")
+        
 
                   
 def findCanhoto(canhoto):
@@ -64,12 +65,12 @@ def findCanhoto(canhoto):
                 print(f"O Canhoto {valor} encontrase com o status de: {str.upper(status)}")
                 for canhoto in folder:
                     if canhoto == f'{valor}.png':
-                        se_pendente(valor)
+                        se_pendente(valor,'.png')
                         time.sleep(1)
                         canhoto_pendente(canhoto,f'{valor}.png')
                         
                     if canhoto == f'{valor}.jpg':
-                        se_pendente(valor)
+                        se_pendente(valor,'.jpg')
                         time.sleep(1)
                         canhoto_pendente(canhoto,f'{valor}.jpg')
 
@@ -77,26 +78,30 @@ def findCanhoto(canhoto):
                 print(f"O Canhoto {valor} encontrase com o status de: {str.upper(status)}")
                 for canhoto in folder:
                     if canhoto == f'{valor}.png':
-                        se_pendente(valor)
+                        se_pendente(valor,'.png')
                         time.sleep(1)
                         canhoto_rejeitado(canhoto,f'{valor}.png')
                     if canhoto == f'{valor}.jpg':
-                        se_pendente(valor)
+                        se_pendente(valor,'.jpg')
                         time.sleep(1)
                         canhoto_rejeitado(canhoto,f'{valor}.jpg')
                     
             time.sleep(3)
-        if not valor or ValueError:
+        if not valor and ValueError:
+            print('==========================================')
             print('NAO ENCONTRADO')
+            print('==========================================')
     except Exception:
         print(f'{canhoto}------------NAO ENCONTRADO -----------------')
-        arquivo_origem = os.path.join(CAMINHO,'CANHOTOS/',canhoto)
-        arquivo_destino = os.path.join(CAMINHO,'CANHOTOS_NAO_ENCONTRADOS/',canhoto)
+        arquivo_origem = os.path.join(CAMINHO,'CANHOTOS/',f'{canhoto[0]}.png')
+        arquivo_destino = os.path.join(CAMINHO,'CANHOTOS_NAO_ENCONTRADOS/',f'{canhoto[0]}.png')
         os.rename(arquivo_origem, arquivo_destino)
-        print(f'{canhoto}------------CANHOTO MOVIDO-----------------')
+        print(f'Canhoto {canhoto}------------CANHOTO MOVIDO-----------------')
        
             
 for item in folder_canhotos:
+    print('==========================================')
+    print(' ')
     print(f'-------Tentando encontrar o canhoto: {item}-------')
     findCanhoto(item)
     
