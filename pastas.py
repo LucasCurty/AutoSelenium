@@ -2,32 +2,31 @@ import os
 from acessos import CAMINHO
 
 #Conferindo pastas, se nao existe o sistema cria.
-# teste = []
-# digitalizados = f'{CAMINHO}/CANHOTOS_DIGITALIZADOS'
-# ag_aprovacao = f'{CAMINHO}/CANHOTOS_AG_APROVAÇÃO'
-# nao_encontrados = f'{CAMINHO}/CANHOTOS_NAO_ENCONTRADOS'
-# pendentes = f'{CAMINHO}/CANHOTOS_PENDENTES'
-# rejeitados = f'{CAMINHO}/CANHOTOS_REJEITADOS'
 
-# teste.append(digitalizados)
-# teste.append(ag_aprovacao)
-# teste.append(nao_encontrados)
-# teste.append(pendentes)
-# teste.append(rejeitados)
+def create_folders():
+    pastas = [
+        f'{CAMINHO}CANHOTOS_DIGITALIZADO',
+        f'{CAMINHO}CANHOTOS_AG. APROVAÇÃO',
+        f'{CAMINHO}CANHOTOS_NAO ENCONTRADOS',
+        f'{CAMINHO}CANHOTOS_PENDENTE',
+        f'{CAMINHO}CANHOTOS_REJEITADO'
+    ]
 
-# for i in teste:
-    
-#     if os.path.exists(i) == False:
-#         os.mkdir(i)
-#         print(i)
+    for i in pastas:
+        if os.path.exists(i) == False:
+            os.mkdir(i)
+            print("====Pasta criada com sucesso! ", i)
+        else:
+            print(f"===Caminho {i} encontrado!")
 
-folder = os.listdir(f'{CAMINHO}/CANHOTOS')
-folder_canhotos = []
-for i in folder:
-    os.rename(f'{CAMINHO}/CANHOTOS/{i}',f'{CAMINHO}/CANHOTOS/{i}.png')
-    canhoto = i.split('.')
-    canhoto.pop()
-    folder_canhotos.append(canhoto)
-    
-    print(folder_canhotos)
-    
+def rename_arquivos():
+    folder = os.listdir(f'{CAMINHO}CANHOTOS')
+    folder_canhotos = []
+    for i in folder:
+        canhoto = i.split('.')
+        canhoto.pop()
+        novo_canhoto = canhoto[0]
+        os.rename(f'{CAMINHO}CANHOTOS/{i}',f'{CAMINHO}CANHOTOS/{novo_canhoto}.png')
+        folder_canhotos.append(novo_canhoto)        
+    return folder_canhotos
+        
