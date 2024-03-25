@@ -3,7 +3,7 @@
 Como usar:
 
 Baixe os arquivos, instale as dependencias.
-Nessa versão estou buscando uma pasta chamada ```CANHOTOS``` dentro de uma pasta da versao desktop do ![Google Driver]([teste](https://www.google.com/intl/pt-BR/drive/download/)).
+Nessa versão estou buscando uma pasta chamada ```CANHOTOS``` dentro de uma pasta da versao desktop do [Google Driver](https://www.google.com/intl/pt-BR/drive/download/).
 Então também precisará fazer o download e criar a pasta mencionada e adicionar os canhotos a serem conferidos.
 
 [x] - Criando a alteração no nome do arquivo
